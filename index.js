@@ -34,11 +34,15 @@ const questions = [
     choices: ["C", "D", "E", "F", "G", "A", "B"],
   },
 ];
+const promptQuestion = () => {
+  inquirer.prompt(questions).then((answers) => {
+    if (answers.tipo === "Maior") {
+      console.log(escalasMaioresNaturais[answers.nota]);
+    } else {
+      console.log(escalasMenoresNaturais[answers.nota]);
+    }
+    promptQuestion();
+  });
+}
 
-inquirer.prompt(questions).then((answers) => {
-  if (answers.tipo === "Maior") {
-    console.log(escalasMaioresNaturais[answers.nota]);
-  } else {
-    console.log(escalasMenoresNaturais[answers.nota]);
-  }
-});
+promptQuestion();
